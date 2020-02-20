@@ -1,0 +1,13 @@
+<p>lazy-component works!</p>
+
+<form [formGroup]="form">
+  <label>
+    Select a category
+    <select formControlName="category">
+      <option *ngFor="let category of categories" [ngValue]="category">
+        {{category}}
+      </option>
+    </select>
+  </label>
+  {{form.controls.category.value}}
+</form>
