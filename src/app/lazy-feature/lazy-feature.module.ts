@@ -1,14 +1,24 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ComponentFactoryResolver, ComponentFactory } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LazyComponentComponent } from './lazy-component/lazy-component.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { LazyComponent } from './lazy/lazy.component';
+import { DetailsComponent } from './details/details.component';
+
 @NgModule({
-  declarations: [LazyComponentComponent],
+  declarations: [
+    LazyComponent,
+    DetailsComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule
   ]
 })
-export class LazyFeatureModule { }
-export const Component = LazyComponentComponent;
+export class LazyFeatureModule {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+
+  public resolveComponent(): ComponentFactory<LazyComponent> {
+    return this.componentFactoryResolver.resolveComponentFactory(LazyComponent);
+  }
+}
